@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Mobility Pattern - TaxiRadar</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <link rel="stylesheet" type="text/css" href="./static/css/datatables.min.css"/>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/pdfmake.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.32/vfs_fonts.js"></script>
+    <link rel="stylesheet" type="text/css" href="./static/css/bootstrap-datetimepicker.min.css"/>
+    <link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/flatly/bootstrap.min.css" rel="stylesheet">
+    <script src="./static/js/lib/require.js"></script>
+    <script src="./static/js/require-setup.js"></script>
+    <script src="./static/js/lib/jquery-3.2.1.min.js"></script>
+    <script src="./static/js/lib/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="./static/css/custom.css"/>
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="../bower_components/html5shiv/dist/html5shiv.js"></script>
+      <script src="../bower_components/respond/dest/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="./matrix">TaxiRadar</a>
+        </div>
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav">
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Trip List <span class="caret"></span></a>
+              <ul class="dropdown-menu" role="menu">
+                <li><a href="trip_list.html?low_amount">Low Total Amount</a></li>
+                <li><a href="trip_list.html?high_amount">High Total Amount</a></li>
+              </ul>
+            </li>
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Mobility Pattern <span class="caret"></span></a>
+                <ul class="dropdown-menu" role="menu">
+                  <li><a href="./matrix">Transition Matrix</a></li>
+                  <li><a href="evolution.html">Evolution</a></li>
+                </ul>
+            </li>
+          </ul>
+          <form class="navbar-form navbar-left" role="search">
+            <div class="form-group">
+              <input type="text" class="form-control" placeholder="Search">
+            </div>
+            <button type="submit" class="btn btn-default">Submit</button>
+          </form>
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="mailto:ruidong@tum">Contact</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <div class="container" style="margin-top: 80px;">
+        
+<div class="row">
+    <div class="col-lg-12">
+      <h1>Mobility pattern evolution across time & Forecasting</h1>
+      <br />
+      <form class="form-horizontal" id="setting">
+        <fieldset>
+          <legend data-toggle="tooltip" title="You could choose from the top 10 hotspots.">Which Transition?</legend>
+          <div class="form-group col-lg-8">
+            <label for="select" class="col-lg-1 control-label">From</label>
+            <div class="col-lg-5">
+              <select class="form-control" id="from">
+                <option value="190">North Side-South Side</option>
+                <option value="228">DUMBO-Vinegar Hill-Downtown Brooklyn-Boerum Hill</option>
+                <option value="219">Central Harlem South</option>
+                <option value="183">East Harlem North</option>
+                <option value="100">Astoria</option>
+                <option value="145">East Harlem South</option>
+                <option value="259">Park Slope-Gowanus</option>
+                <option value="218">Morningside Heights</option>
+                <option value="151">Elmhurst</option>
+                <option value="170">Greenpoint</option>
+              </select>
+            </div>
+            <label for="select" class="col-lg-1 control-label">To</label>
+            <div class="col-lg-5">
+              <select class="form-control" id="to">
+                  <option value="190">North Side-South Side</option>
+                  <option value="228">DUMBO-Vinegar Hill-Downtown Brooklyn-Boerum Hill</option>
+                  <option value="219">Central Harlem South</option>
+                  <option value="183">East Harlem North</option>
+                  <option value="100">Astoria</option>
+                  <option value="145">East Harlem South</option>
+                  <option value="259">Park Slope-Gowanus</option>
+                  <option value="218">Morningside Heights</option>
+                  <option value="151">Elmhurst</option>
+                  <option value="170">Greenpoint</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group col-lg-4">
+            <label class="col-lg-4 control-label">Model</label>
+            <div class="radio col-lg-4">
+              <label>
+                <input type="radio" name="model" value="ARIMA" checked="">
+                ARIMA
+              </label>
+            </div>
+            <div class="radio col-lg-4">
+              <label>
+                <input type="radio" name="model" value="ARIMAX">
+                ARIMAX
+              </label>
+            </div>
+          </div>
+        </fieldset>
+      </form>
+      <h3>Result</h3>
+      <!-- tabs left -->
+      <div class="tabbable tabs-top">
+          <ul class="nav nav-tabs">
+            <li class="active"><a href="#evolution" data-toggle="tab">Evolution</a></li>
+            <li><a href="#insample" data-toggle="tab">One-Step Prediction</a></li>
+            <li><a href="#outsample" data-toggle="tab">Multi-Step Prediction</a></li>
+            <li><a href="#param" data-toggle="tab">Parameters</a></li>
+          </ul>
+          <div class="tab-content">
+            <div class="tab-pane active" id="evolution">
+              The selected transition is plotted in golden. The trips from <from></from> to regions, having strongest connection with <from></from>,
+              and trips from regions, having strongest connection with <to></to>, to <to></to> are plotted in other colors.
+              <a id='evo_a' target="_blank"><img id='evo' class="img-responsive"></a>              
+            </div>
+            <div class="tab-pane" id="insample">We plot rolling predictions for one day.
+              <a id='insample_a' target="_blank"><img id='insample_i' class="img-responsive" /></a>
+            </div>
+            <div class="tab-pane" id="outsample">We plot out-sample predictions for ten days.<br />
+              <a id='outsample_a0' target="_blank"><img id='outsample0' class="img-responsive"></a><br />
+              <a id='outsample_a1' target="_blank"><img id='outsample1' class="img-responsive"></a><br />
+              <a id='outsample_a2' target="_blank"><img id='outsample2' class="img-responsive"></a>
+            </div>
+            <div class="tab-pane" id="param" style="font-family:monospace"></div>
+          </div>
+        </div>
+        <!-- /tabs -->
+    </div>
+</div>
+
+<script>
+  function prefix(){
+    return 'd'+$('#from').find(":selected").val()+'_d'+$('#to').find(":selected").val()
+  }
+  function load(){
+    var path = './edges_fig/'+prefix();
+    var model = $('input[name=model]:checked', '#setting').val()
+    $('from').text($('#from').find(":selected").text())
+    $('to').text($('#to').find(":selected").text())
+    $('#evo_a').attr("href", path+".png");$('#evo').attr("src", path+".png");
+    $('#insample_a').attr("href", path+"_"+model+"_fit.png");
+    $('#insample_i').attr("src", path+"_"+model+"_fit.png");
+    Array.apply(null, Array(3)).map(function (_, i) {
+      $('#outsample_a'+i.toString()).attr("href", path+"_"+model+"_"+i.toString()+".png");
+      $('#outsample'+i.toString()).attr("src", path+"_"+model+"_"+i.toString()+".png");
+    });
+    $.get(path+"_"+model+'.txt', function(data) {
+          $('#param').html(data.replace(/\n/g,'<br/>'));
+      }, 'text');
+  }
+  $("select, input[type=radio][name=model]").change(function(){
+      load();
+  });
+  load();
+  // function openTab(evt, tabName) {
+  //   // Declare all variables
+  //   var i, tabcontent, tablinks;
+
+  //   // Get all elements with class="tabcontent" and hide them
+  //   tabcontent = document.getElementsByClassName("vertical_tabcontent");
+  //   for (i = 0; i < tabcontent.length; i++) {
+  //       tabcontent[i].style.display = "none";
+  //   }
+
+  //   // Get all elements with class="tablinks" and remove the class "active"
+  //   tablinks = document.getElementsByClassName("tablinks");
+  //   for (i = 0; i < tablinks.length; i++) {
+  //       tablinks[i].className = tablinks[i].className.replace(" active", "");
+  //   }
+
+  //   // Show the current tab, and add an "active" class to the link that opened the tab
+  //   document.getElementById(tabName).style.display = "block";
+  //   evt.currentTarget.className += " active";
+  // }
+</script>
+
+    </div>
+
+</body>
+</html>

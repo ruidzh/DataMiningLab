@@ -3,8 +3,12 @@
 <html class="ocks-org do-not-copy">
 <meta charset="utf-8">
 <title>New York Taxi Mobility Pattern</title>
+<link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/flatly/bootstrap.min.css" rel="stylesheet">
+<script src="../static/js/lib/require.js"></script>
+<script src="../static/js/require-setup.js"></script>
+<script src="../static/js/lib/jquery-3.2.1.min.js"></script>
+<script src="../static/js/lib/bootstrap.min.js"></script>
 <style>
-
 @import url(matrix.css);
 
 .background {
@@ -18,14 +22,54 @@ line {
 text.active {
   fill: red;
 }
-
 </style>
 <script src="d3.v2.min.js" charset="utf-8"></script>
+<body>
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="#">TaxiRadar</a>
+      </div>
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav">
+          <!-- <li><a href="/trip_list/">Trip List</a></li> -->
+          <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Trip List <span class="caret"></span></a>
+              <ul class="dropdown-menu" role="menu">
+                  <li><a href="../trip_list.html?low_amount">Low Total Amount</a></li>
+                  <li><a href="../trip_list.html?high_amount">High Total Amount</a></li>
+              </ul>
+          </li>
+          <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Mobility Pattern <span class="caret"></span></a>
+              <ul class="dropdown-menu" role="menu">
+              <li><a href="#">Transition Matrix</a></li>
+              <li><a href="../evolution.html">Evolution</a></li>
+              </ul>
+          </li>
+        </ul>
+        <form class="navbar-form navbar-left" role="search">
+          <div class="form-group">
+            <input type="text" class="form-control" placeholder="Search">
+          </div>
+          <button type="submit" class="btn btn-default">Submit</button>
+        </form>
+        <ul class="nav navbar-nav navbar-right">
+          <li><a href="mailto:ruidong@tum">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+</nav>
 
+<h1 style="margin-top:80px;">New York Taxi Mobility Pattern</h1>
 
-<h1>New York Taxi Mobility Pattern</h1>
-
-<aside style="margin-top:80px;">
+<aside>
 <p>Order: <select id="order">
   <option value="name">by Name</option>
   <option value="count">by Frequency</option>
@@ -36,7 +80,7 @@ text.active {
 <p>Column: Pickup Location
 <p>Built with <a href="http://d3js.org/">d3.js</a>.
 </aside>
-
+</body>
 <script>
 
 var margin = {top: 200, right: 0, bottom: 10, left: 200},
