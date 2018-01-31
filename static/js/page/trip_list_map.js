@@ -1,5 +1,8 @@
 require(['jquery',google_map_api,'gmap3'], function($){
     var cluster, marker;
+    $.gmap3({
+      key: 'AIzaSyAVPAMB9_O-yuBPSo1TdTqn4BsgegZyrWU'
+    });
     function initMaps() {
             list_map = {
                 add: function (columndata) { //data from datatables
@@ -60,7 +63,6 @@ require(['jquery',google_map_api,'gmap3'], function($){
                 }
             };
             list_map.map = $('#list_map').gmap3({
-                    //key: "AIzaSyBR7Z6npapsj4l93EOv6awYTALsvvr-EZs",
                     center: {
                         lat: 40.7625,
                         lng: -73.9742
@@ -99,7 +101,6 @@ require(['jquery',google_map_api,'gmap3'], function($){
                 }
             };
             single_map.map = $('#single_map').gmap3({
-                    //key: "AIzaSyBR7Z6npapsj4l93EOv6awYTALsvvr-EZs",
                     center: {
                         lat: 40.7625,
                         lng: -73.9742
