@@ -1,0 +1,75 @@
+{
+    "recordsFiltered": 7010000,
+    "data": [
+        {
+            "pickupTime": "2016-01-01T03:06:48",
+            "pickupPoint": "SRID=4326;POINT (-73.80717468261719 40.69917678833008)",
+            "dropoffPoint": "SRID=4326;POINT (-73.77547454833984 40.66282272338867)",
+            "totalAmount": "18.96",
+            "tripDistance": "4.68"
+        },
+        {
+            "pickupTime": "2016-01-01T03:01:51",
+            "pickupPoint": "SRID=4326;POINT (-73.94921112060547 40.71342849731445)",
+            "dropoffPoint": "SRID=4326;POINT (-73.94818878173827 40.70774841308594)",
+            "totalAmount": "14.16",
+            "tripDistance": "1.83"
+        },
+        {
+            "pickupTime": "2016-01-01T03:01:30",
+            "pickupPoint": "SRID=4326;POINT (-73.96835327148438 40.67916107177734)",
+            "dropoffPoint": "SRID=4326;POINT (-73.92619323730467 40.67207336425781)",
+            "totalAmount": "13.30",
+            "tripDistance": "2.74"
+        },
+        {
+            "pickupTime": "2016-01-01T03:05:54",
+            "pickupPoint": "SRID=4326;POINT (-73.99326324462891 40.682861328125)",
+            "dropoffPoint": "SRID=4326;POINT (-73.99337768554686 40.69762420654297)",
+            "totalAmount": "9.30",
+            "tripDistance": "1.28"
+        },
+        {
+            "pickupTime": "2016-01-01T03:09:20",
+            "pickupPoint": "SRID=4326;POINT (-73.9342498779297 40.79764175415039)",
+            "dropoffPoint": "SRID=4326;POINT (-73.93654632568358 40.8302116394043)",
+            "totalAmount": "10.80",
+            "tripDistance": "2.59"
+        },
+        {
+            "pickupTime": "2016-01-01T03:11:34",
+            "pickupPoint": "SRID=4326;POINT (-73.91074371337891 40.70459747314453)",
+            "dropoffPoint": "SRID=4326;POINT (-73.89923858642578 40.70809173583984)",
+            "totalAmount": "7.56",
+            "tripDistance": "0.80"
+        },
+        {
+            "pickupTime": "2016-01-01T03:13:06",
+            "pickupPoint": "SRID=4326;POINT (-73.96183776855469 40.71379089355469)",
+            "dropoffPoint": "SRID=4326;POINT (-73.96430969238281 40.71572113037109)",
+            "totalAmount": "4.80",
+            "tripDistance": "0.23"
+        },
+        {
+            "pickupTime": "2016-01-01T03:07:05",
+            "pickupPoint": "SRID=4326;POINT (-73.90440368652342 40.74376678466797)",
+            "dropoffPoint": "SRID=4326;POINT (-73.89999389648438 40.76750183105469)",
+            "totalAmount": "12.80",
+            "tripDistance": "3.71"
+        },
+        {
+            "pickupTime": "2016-01-01T03:09:06",
+            "pickupPoint": "SRID=4326;POINT (-73.87018585205078 40.74673461914063)",
+            "dropoffPoint": "SRID=4326;POINT (-73.88026428222656 40.748046875)",
+            "totalAmount": "8.76",
+            "tripDistance": "0.64"
+        },
+        {
+            "pickupTime": "2016-01-01T03:04:53",
+            "pickupPoint": "SRID=4326;POINT (-73.92376708984375 40.69038772583008)",
+            "dropoffPoint": "SRID=4326;POINT (-73.92227172851563 40.70890426635742)",
+            "totalAmount": "9.30",
+            "tripDistance": "1.73"
+        }
+    ]
+}

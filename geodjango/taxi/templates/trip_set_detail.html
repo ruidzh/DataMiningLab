@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block title %}Trip List - TaxiRadar{% endblock %}
+
+{% block requirejs %}
+<script src="{% static 'js/page/trip_list.js' %}"></script>
+<script src="{% static 'js/page/trip_list_map.js' %}"></script>
+{% endblock %}
+
+{% block content %}
+<div class="row">
+    <h2>Set {{ set.name }}</h2>
+    <a href="{% url 'project' pk=set.pk %}" class="btn btn-primary btn-sm">Project Location</a><a href="{% url 'create_graph' pk=set.pk %}" class="btn btn-primary btn-sm">Create Graph</a>
+    {% include "trip_list_datatable.html" with datetime_filters=datetime_filters decimal_filters=decimal_filters %}
+</div>
+{% include "trip_filter.html" with datetime_filters=datetime_filters decimal_filters=decimal_filters %}
+<script>
+    function getRootPath() {
+var strFullPath = window.document.location.href;
+var strPath = window.document.location.pathname;
+var pos = strFullPath.indexOf(strPath);
+var prePath = strFullPath.substring(0, pos);
+var postPath = strPath.substring(0, strPath.substr(1).indexOf('/') + 1);
+return (prePath);
+}
+    var query = window.location.search.substring(1);
+    var ajax =  {
+            "url": "{% url 'trip-list' %}?set={{ set.pk }}&"+query,//"{% static 'fakedata.json' %}"
+            "type": "GET",
+            data: function ( data ) {
+                data.page = data.draw;
+                delete data.draw;
+                data.limit = data.length;
+                data.page_size = data.limit;
+                delete data.length;
+                data.search = data.search.value;
+                data.offset = data.start;
+                if (data.order.length>1) {
+                    var ordering = data.columns[data.order[0].column].data;
+                    if(ordering.includes('.')){
+                        ordering = ordering.replace('.','__');
+                    }
+                    if(data.order[0].dir === 'asc') {
+                        data.ordering = ordering;
+                    } else {
+                        data.ordering = "-" + ordering;
+                    }
+                }
+                delete data.start;
+                return data;
+            }
+        }
+</script>
+{% include "trip_list_map.html" with greeting="Hi" only %}
+{% endblock %}

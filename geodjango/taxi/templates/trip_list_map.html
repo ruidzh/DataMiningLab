@@ -1,0 +1,25 @@
+{% load staticfiles %}
+<div id="map_icon" style="z-index: 9999; position: fixed ! important; right: 10px; bottom: 10px;width:fit-content">
+    <div id="map_panel" class="collapse in">
+        <ul class="nav nav-tabs">
+            <li class="active in"><a href="#list-map" data-toggle="tab" aria-expanded="false">List</a></li>
+            <li class=""><a href="#single-map" data-toggle="tab" aria-expanded="false">Single</a></li>
+        </ul><button onclick="initMaps()"> Init</button>
+        <div id="maps" class="tab-content">
+            <div class="tab-pane fade active in" id="list-map">
+                    <label>
+                            <input id="map_pickup" type="checkbox" onclick="list_map.draw()" checked> Pickup
+                    </label>
+                    <label>
+                            <input id="map_dropoff" type="checkbox" onclick="list_map.draw()" checked> Dropoff
+                    </label>
+                <div id="list_map" class="gm-map"></div>
+            </div>
+            <div class="tab-pane fade active in" id="single-map">
+                <div id="single_map" class="gm-map"></div>
+            </div>
+        </div>
+      </div>
+    <a href="#" id="map-button" class="btn btn-default pull-right" data-toggle="collapse" data-target="#map_panel" aria-expanded="false" aria-hidden="true"><span class="glyphicon glyphicon-globe"></span></a>
+</div>
+<!-- <div id="box" style="width:100%; height: 400px; margin-top:50px"></div> -->

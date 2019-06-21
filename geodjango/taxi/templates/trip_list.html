@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block title %}Trip List - TaxiRadar{% endblock %}
+
+{% block requirejs %}
+<script src="{% static 'js/page/trip_list.js' %}"></script>
+<script src="{% static 'js/page/trip_list_map.js' %}"></script>
+{% endblock %}
+
+{% block content %}
+{% include "trip_list_datatable.html" %}
+{% include "trip_filter.html" with datetime_filters=datetime_filters decimal_filters=decimal_filters %}
+<script>
+    var query = window.location.search.substring(1);
+    var ajax =  {
+            "url": "{% url 'trip-list' %}?"+query,//"{% static 'fakedata.json' %}"
+            "type": "GET",
+            data: function ( data ) {
+                data.page = data.draw;
+                delete data.draw;
+                data.limit = data.length;
+                data.page_size = data.limit;
+                delete data.length;
+                data.search = data.search.value;
+                data.offset = data.start;
+                if (data.order.length>1) {
+                    var ordering = data.columns[data.order[0].column].data;
+                    if(ordering.includes('.')){
+                        ordering = ordering.replace('.','__');
+                    }
+                    if(data.order[0].dir === 'asc') {
+                        data.ordering = ordering;
+                    } else {
+                        data.ordering = "-" + ordering;
+                    }
+                }
+                delete data.start;
+                return data;
+            }
+        }
+</script>
+{% include "trip_list_map.html" with greeting="Hi" only %}
+{% endblock %}

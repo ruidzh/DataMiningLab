@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block title %}Trip Set List - TaxiRadar{% endblock %}
+
+{% block requirejs %}
+<script src="{% static 'js/page/basic.js' %}"></script>
+{% endblock %}
+
+{% block content %}
+<div class="row" style="margin-top: 80px;">
+    <div class="list-group">
+        {% for set in sets %}
+        <a href="{% url 'trip_set_detail' pk=set.pk %}" class="list-group-item">
+            <h4 class="list-group-item-heading">{{ set.name }}</h4>
+            <p class="list-group-item-text">#trips: {{ set.n_trips }}</p>
+        </a>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

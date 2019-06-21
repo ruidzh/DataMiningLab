@@ -1,0 +1,30 @@
+<div class="row">
+    <div class="panel panel-default col-lg-12">
+      <div class="panel-heading">Filter</div>
+      <div class="panel-body">
+            {% if not nosubmit %}<form method="GET" id="filter_form">{% endif %}
+            {% for name,inputName in datetime_filters.items %}
+                <datetimepicker input-name="{{ inputName }}" name="{{ name }}"></datetimepicker>
+            {% endfor %}
+            {% for name,inputName in decimal_filters.items %}
+                <decimal input-name="{{ inputName }}" name="{{ name }}"></decimal>
+            {% endfor %}
+            {% if not nosubmit %}
+            <div class="form-group">
+              <div class="col-lg-4">
+                <button type="reset" class="btn btn-default">Cancel</button>
+                <button type="submit" class="btn btn-primary">Submit</button>
+              </div>
+            </div>
+            </form>
+            {% endif %}
+        <script>
+            require(['jquery', 'Vue','moment','vue!Component/datetimepicker','vue!Component/decimal','datetimepicker','bootstrap'], function($, Vue, moment){
+                new Vue({
+                    el : "#filter_form"
+                });
+            });
+        </script>
+      </div>
+    </div>
+</div>
