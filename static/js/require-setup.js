@@ -1,7 +1,7 @@
 // Declare this variable before loading RequireJS JavaScript library
 // To config RequireJS after it’s loaded, pass the below object into require.config();
-google_map_api_url = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyAVPAMB9_O-yuBPSo1TdTqn4BsgegZyrWU';
-google_map_api =  google_map_api_url;//'async!' +
+google_map_api_url = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyCFcmnULXYUCEjamNXBttOFA1P-9dfWOPA';
+google_map_api =  google_map_api_url;//'async!' 
 var strFullPath = window.document.location.href;
 var strPath = window.document.location.pathname;
 var pos = strFullPath.indexOf(strPath);
